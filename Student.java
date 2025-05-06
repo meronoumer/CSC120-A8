@@ -4,22 +4,10 @@ import java.util.ArrayList;
  * Represents a student with a name, ID, class year, and a list of courses.
  */
 public class Student {
-    // Attributes 
-    /**
-     * The name of the student.
-     */
+
     private String name; 
-    /**
-     * The ID of the student.
-     */
     private String id; 
-    /**
-     * The class year of the student.
-     */
     private int classYear; 
-    /**
-     * The list of courses the student is enrolled in.
-     */
     private ArrayList<Course> classes; 
 
     /**

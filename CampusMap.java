@@ -49,6 +49,9 @@ public class CampusMap {
         }
         return mapString;
     }
+    /**
+     * Main method to test this class
+     */
 
     public static void main(String[] args) {
         CampusMap myMap = new CampusMap();

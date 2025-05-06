@@ -9,10 +9,7 @@ import java.util.Collection;
  */
 public class Library extends Building {
 
-  /**
-   * The collection of books in the library, stored as a Hashtable.
-   * The key is the title of the book, and the value is a boolean indicating availability.
-   */
+
   private Hashtable<String, Boolean> collection;
   private boolean hasElevator;
 
@@ -22,10 +19,10 @@ public class Library extends Building {
     *
     * @param name    The name of the library.
     * @param address The address of the library.
-    * @param nFloors The number of floors in the library.
+    * @param nFloor The number of floors in the library.
     */
     public Library(String name, String address, int nFloor ) {
-      super(name, address, nFloor);//is this right
+      super(name, address, nFloor);
 
       this.hasElevator = true; 
       this.collection = new Hashtable<String, Boolean>() ;
@@ -48,13 +45,13 @@ public class Library extends Building {
       }
     }
     /**
-     * Adds a group of titles to the Library's collection
+     * Adds a collection of book titles to the library. If a book is already present, a message is printed to the console, and the process continues with the next title.
      * 
      * @param Books The group of books to add
      * catches Exception if the book in the arraylist of books we're trying to add is already in the library
      */
-    public void addTitle(ArrayList<String> Books){
-      for(String title:Books){
+    public void addTitle(ArrayList<String> books){
+      for(String title:books){
         try {
             addTitle(title);
         } catch ( Exception e) {
@@ -207,8 +204,7 @@ public class Library extends Building {
    * is not inside the building or if the floor number is invalid.
    *
    * @param floorNum The number of the floor to go to.
-   * @throws RuntimeException If the user is not inside the building
-   * or if the requested floor number is invalid.
+   * @throws RuntimeException If the user is not inside the building or if the requested floor number is invalid.
    */
   @Override
   public void goToFloor(int floorNum){

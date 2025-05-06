@@ -6,15 +6,9 @@ import java.util.ArrayList;
  * Represents a House building containing residents and a dining room.
  */
 public class House extends Building {
-    /**
-     * List of students residing in the house.
-     */
-  private ArrayList<Student> residents; 
-  /**
-   * Indicates whether the house has a dining room.
-   */
-  private boolean hasDiningRoom;
 
+  private ArrayList<Student> residents; 
+  private boolean hasDiningRoom;
   private boolean hasElevator;
   private Student oneCardNumber;
 
@@ -28,7 +22,6 @@ public class House extends Building {
   * @param nFloors       The number of floors in the house.
   * @param hasDiningRoom Whether the house has a dining room.
   */
-
   public House(String name, String address, int nFloors,boolean hasDiningRoom){
     super(name, address, nFloors);
     this.residents = new ArrayList<> ();
@@ -53,11 +46,12 @@ public class House extends Building {
   */
 
   public int nResidents(){
-    int num_residents = 0;
-    for(int i = 0; i<residents.size();i++){
-      num_residents++;
+    int numResidents = 0;
+    for (int i = 0; i<residents.size();i++)
+    {
+      numResidents++;
     }
-    return num_residents;
+    return numResidents;
   }
 
   /**
@@ -70,6 +64,7 @@ public class House extends Building {
    
       this.residents.add(s);
     }
+
   /**
   * Adds a student to the list of residents in the house identifying by their oneCard number.
   *
@@ -85,7 +80,8 @@ public class House extends Building {
   * @param oneCardNumber The oneCard ID number of the student to move in.
   */
     public void moveIn(ArrayList<Student> students){
-      for (Student student : students) { 
+      for (Student student : students) 
+      { 
         this.residents.add(student);
     }
 }
@@ -100,13 +96,14 @@ public class House extends Building {
 
    
 public Student moveOut(Student s){
-  if(!isResident(s)){
+  if(!isResident(s))
+  {
     throw new RuntimeException("Student not found");
   }
   else{
-
     this.residents.remove(s);
-    return s;}
+    return s;
+  }
   
 }
 /**
@@ -130,7 +127,8 @@ public void moveOut(int oneCardNumber){
  * @throws RuntimeException if the student is not found in the house.
  */
 public void moveOut(ArrayList<Student> students){
-  for(Student student : students){
+  for(Student student : students)
+  {
     this.residents.add(student);
   }
 }
@@ -143,7 +141,8 @@ public void moveOut(ArrayList<Student> students){
  * @return true if the student is a resident, false otherwise.
  */
 public boolean isResident(Student s){
-  if (residents.contains(s)){
+  if (residents.contains(s))
+  {
     return true;
   }
   else{
@@ -171,28 +170,20 @@ public void showOptions(){
  * or if the requested floor number is invalid.
  */
 
-@Override
-public void goToFloor(int floorNum){
-  if (this.activeFloor == -1) {
-    throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
-}
-if (floorNum < 1 || floorNum > this.nFloors) {
-    throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
-}
-if(this.hasElevator ==true && floorNum != this.activeFloor +1){
-  super.goToFloor(floorNum);
- // this.activeFloor = floorNum; //how do i fix this
-}
-System.out.println("You are now on floor #" + floorNum + " of " + this.name);
-this.activeFloor = floorNum;
 
+ @Override
+ public void goToFloor(int floorNum) {
+     if (!this.hasElevator && (floorNum > this.activeFloor + 1 || floorNum < this.activeFloor - 1)) 
+     {
+         throw new RuntimeException("This house does not have an elevator. You can only move to adjacent floors.");
+     }
+     super.goToFloor(floorNum);
+ }
 
-
-}
 
 
  /**
-  * Main method for testing the House class.
+  * Main method 
   *
   * @param args 
   */

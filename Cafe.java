@@ -4,28 +4,15 @@
 /* This is a stub for the Cafe class */
 
 
-
 /**
  * Represents a Cafe building with an inventory containing coffee, sugar, cream, and cups.
  */
 public class Cafe extends Building {
-   /**
-    * How many ounces of coffee are remaining in inventory.
-    */
-    private int nCoffeeOunces;
-   /**
-    * How many sugar packets are remaining in inventory.
-    */
-    private int nSugarPackets;
-   /**
-    * The number of "splashes" of cream remaining in inventory.
-    */
-    private int nCreams;
-   /**
-    * How many cups are remaining in inventory.
-    */
-    private int nCups;
 
+    private int nCoffeeOunces;
+    private int nSugarPackets;
+    private int nCreams;
+    private int nCups;
     private boolean hasElevator; 
 
 
@@ -38,7 +25,7 @@ public class Cafe extends Building {
     */
 
     public Cafe(String name,String address,int nFloors ) { 
-        super(name, address, nFloors);//is this right
+        super(name, address, nFloors);
         
         this.nCoffeeOunces  =100;
         this.nSugarPackets = 200;
@@ -66,8 +53,8 @@ public class Cafe extends Building {
     * @param nCreamsUsed        The number of cream splashes used.
     */
     public void sellCoffee(int size, int nSugarPacketsTaken, int nCreamsUsed){
-        if (nCups>0 && nCoffeeOunces >= size && nSugarPackets>=nSugarPacketsTaken && nCreams>=nCreamsUsed){
-
+        if (nCups>0 && nCoffeeOunces >= size && nSugarPackets>=nSugarPacketsTaken && nCreams>=nCreamsUsed)
+        {
             nCoffeeOunces -= size;
             nSugarPackets -= nSugarPacketsTaken;
             nCreams -= nCreamsUsed;
@@ -86,24 +73,25 @@ public class Cafe extends Building {
     * Sells a default  cup of coffee and updates the inventory.
     *
     * @param size The size of the coffee in ounces.
-
     */
     public void sellCoffee(int size){
-        if(nCups>0 && nCoffeeOunces >= size){
+        if(nCups>0 && nCoffeeOunces >= size)
+        {
             nCoffeeOunces -= size;
             nCups -=1;
 
             System.out.println("You've currently sold one general"+ size +"coffee");
         }
     }
-      /**
+   /**
     * Sells a cup of coffee and updates the inventory.
     *
     * @param size               The size of the coffee in ounces.
     * @param nCreamsUsed        The number of creams used.
     */
     public void sellCoffee(int size, int nCreamsUsed){
-        if(nCups>0 && nCoffeeOunces >= size && nCreams>=nCreamsUsed){
+        if(nCups>0 && nCoffeeOunces >= size && nCreams>=nCreamsUsed)
+        {
             nCoffeeOunces -= size;
             nCups -=1;
             nCreams -=nCreamsUsed;
@@ -124,8 +112,8 @@ public class Cafe extends Building {
     * @param nCups         The current number of cups.
     */
     private void restock(int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups){
-        if (nCups ==0 || nCoffeeOunces==0 || nSugarPackets ==0 || nCreams ==0 ){
-
+        if (nCups ==0 || nCoffeeOunces==0 || nSugarPackets ==0 || nCreams ==0 )
+        {
             nCups +=400;
             nCoffeeOunces +=300;
             nSugarPackets +=250;
@@ -152,15 +140,17 @@ public class Cafe extends Building {
      * @param floorNum The floor of a building
      */
     @Override
-    public void goToFloor(int floorNum){
+    public void goToFloor(int floorNum) {
+        if (floorNum != 1) {
+            throw new UnsupportedOperationException("Cafes only have one floor. You cannot go to another floor.");
+        } else {
+            System.out.println("You are already on the ground floor of the cafe!");
+        }
+    }
 
-    System.out.println("You are not permitted to move to any other floors in " + this.name + "cafe .");
 
 
 
-
-
-}
 
     /**
      * Main method for testing the Cafe class.
@@ -177,18 +167,6 @@ public class Cafe extends Building {
 
         Compass.sellCoffee(12, 2, 1);
     }
-
-
-
-    
-
-
-
-
-
-
-    
-
 
 
 
